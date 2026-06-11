@@ -35,7 +35,7 @@ async function getAccessToken(): Promise<string> {
   return data.access_token;
 }
 
-export async function uploadToGcs(buffer: Buffer, fileName: string): Promise<string> {
+export async function uploadToGcs(buffer: Buffer | Uint8Array, fileName: string): Promise<string> {
   const token = await getAccessToken();
   const objectName = `${Date.now()}_${fileName.replace(/\s+/g, "_")}`;
 
@@ -47,7 +47,7 @@ export async function uploadToGcs(buffer: Buffer, fileName: string): Promise<str
         Authorization: `Bearer ${token}`,
         "Content-Type": "application/pdf",
       },
-      body: buffer,
+      body: buffer as BodyInit,
     }
   );
 
