@@ -4,7 +4,7 @@ import PageShell from "@/components/layout/PageShell";
 export const dynamic = "force-dynamic";
 
 export default async function Home() {
-  let materials = [];
+  let materials: import("@/app/lib/types").Material[] = [];
   try {
     materials = await fetchMaterials();
   } catch {
