@@ -1,10 +1,15 @@
 import { fetchMaterials } from "@/app/lib/google-sheets";
 import PageShell from "@/components/layout/PageShell";
 
-export const revalidate = 60;
+export const dynamic = "force-dynamic";
 
 export default async function Home() {
-  const materials = await fetchMaterials();
+  let materials = [];
+  try {
+    materials = await fetchMaterials();
+  } catch {
+    // build time vagy hálózati hiba esetén üres listával indul
+  }
   const lastUpdated = new Date().toISOString();
   return <PageShell materials={materials} lastUpdated={lastUpdated} />;
 }
