@@ -50,7 +50,7 @@ function rowToMaterial(row: string[]): Material {
   };
 }
 
-function materialToRow(m: Omit<Material, "feltoltve"> & { feltoltve?: string }, itemId: string, feltoltve: string): unknown[] {
+function materialToRow(m: Omit<Material, "feltoltve" | "itemId"> & { itemId?: string; feltoltve?: string }, itemId: string, feltoltve: string): unknown[] {
   return [
     itemId,
     m.szallitoiCikkszam,
