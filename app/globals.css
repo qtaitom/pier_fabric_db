@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=DM+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* ── PIER colour tokens ──────────────────────────────────── */
+  --bg:         #EEF1F5;
+  --surface:    #ffffff;
+  --surface2:   #F4F6F9;
+  --pier-border:     #D4DAE3;
+  --pier-border2:    #B8C2CE;
+  --ink:        #0E1C2B;
+  --ink2:       #4A5A6B;
+  --ink3:       #8A98A6;
+  --pier-accent:     #2D5A7B;
+  --pier-accent-lt:  #3A72A0;
+  --pier-accent-bg:  #E6EFF6;
+  --pier-accent-dk:  #1A3A52;
+  --green:      #2A6B4A;
+  --green-bg:   #E6F4EC;
+  --green-border: #b6dfc8;
+  --red:        #8B1E1E;
+  --red-bg:     #FDEAEA;
+  --orange:     #8B4A10;
+  --orange-bg:  #FDF3E6;
+  --orange-border: #f0ceaa;
+  --r:          10px;
+  --rsm:        6px;
+  --rlg:        14px;
+
+  /* ── shadcn / Tailwind compat (separate namespace) ────────── */
+  --background: 0 0% 100%;
+  --foreground: 222.2 84% 4.9%;
+  --card: 0 0% 100%;
+  --card-foreground: 222.2 84% 4.9%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 222.2 84% 4.9%;
+  --primary: 207 45% 33%;
+  --primary-foreground: 210 40% 98%;
+  --secondary: 210 20% 96%;
+  --secondary-foreground: 222.2 47.4% 11.2%;
+  --muted: 210 20% 96%;
+  --muted-foreground: 215 16% 47%;
+  --accent: 210 20% 96%;
+  --accent-foreground: 222.2 47.4% 11.2%;
+  --destructive: 0 84% 37%;
+  --destructive-foreground: 210 40% 98%;
+  --border: 214 20% 83%;
+  --input: 214 20% 83%;
+  --ring: 207 45% 33%;
+  --radius: 0.625rem;
+}
+
+@layer base {
+  * { box-sizing: border-box; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    font-size: 14px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+}
