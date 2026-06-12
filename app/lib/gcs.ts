@@ -20,7 +20,7 @@ function createJwt(email: string, privateKey: string): string {
 
 async function getAccessToken(): Promise<string> {
   const email = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL!;
-  const privateKey = process.env.GOOGLE_PRIVATE_KEY!.replace(/\\n/g, "\n");
+  const privateKey = process.env.GOOGLE_PRIVATE_KEY!.replace(/\\n/g, "\n").replace(/\\\\n/g, "\n");
   const jwt = createJwt(email, privateKey);
   const res = await fetch("https://oauth2.googleapis.com/token", {
     method: "POST",

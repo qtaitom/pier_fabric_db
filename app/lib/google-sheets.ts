@@ -10,7 +10,7 @@ const SHEET_NAME = "Materials";
 const DATA_RANGE = `${SHEET_NAME}!A2:Q1000`;
 
 function getAuthClient() {
-  const privateKey = process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, "\n");
+  const privateKey = process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, "\n").replace(/\\\\n/g, "\n");
   if (!process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL || !privateKey) {
     throw new Error("Hiányzó Google API hitelesítő adatok.");
   }
