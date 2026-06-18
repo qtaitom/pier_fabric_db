@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useCallback } from "react";
+import Image from "next/image";
 import MaterialsTable from "@/components/materials/MaterialsTable";
 import PdfUploader from "@/components/materials/PdfUploader";
 import type { Material } from "@/app/lib/types";
@@ -38,9 +39,22 @@ export default function PageShell({ materials: initialMaterials, lastUpdated }: 
             paddingRight: 160,
           }}
         >
-          <h1 className="font-semibold" style={{ color: "var(--ink)", fontSize: 15 }}>
-            Anyagadatbázis
-          </h1>
+          <div className="flex items-center gap-3">
+            <Image
+              src="/pier-logo.png"
+              alt="PIER Technical"
+              width={104}
+              height={30}
+              style={{ objectFit: "contain" }}
+              priority
+            />
+            <span
+              className="font-semibold"
+              style={{ color: "var(--ink)", fontSize: 15, borderLeft: "1px solid var(--pier-border)", paddingLeft: 12 }}
+            >
+              Anyagadatbázis
+            </span>
+          </div>
           <button
             onClick={() => setShowUpload((v) => !v)}
             className="flex items-center gap-2 px-4 py-1.5 text-sm font-medium transition-all"
