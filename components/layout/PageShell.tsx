@@ -37,6 +37,8 @@ export default function PageShell({ materials: initialMaterials, lastUpdated }: 
             position: "sticky",
             top: 0,
             zIndex: 10,
+            // helyet hagyunk a fix "Indítópult" pirulának (jobb felső sarok)
+            paddingRight: 160,
           }}
         >
           <h1 className="font-semibold" style={{ color: "var(--ink)", fontSize: 15 }}>
