@@ -17,14 +17,17 @@ const STATUS_STYLES: Record<string, { bg: string; color: string; border: string 
   "Archivált":        { bg: "var(--surface2)",     color: "var(--ink3)",        border: "var(--pier-border)" },
 };
 
-function StatusBadge({ status }: { status: string }) {
+function StatusDot({ status }: { status: string }) {
   const s = STATUS_STYLES[status] ?? STATUS_STYLES["Archivált"];
   return (
-    <span
-      className="inline-flex items-center px-2 py-0.5 text-xs font-medium whitespace-nowrap"
-      style={{ background: s.bg, color: s.color, border: `1px solid ${s.border}`, borderRadius: "var(--rsm)" }}
-    >
-      {status}
+    <span title={status} className="inline-flex items-center gap-1.5">
+      <span
+        style={{
+          width: 9, height: 9, borderRadius: "50%",
+          background: s.color, flexShrink: 0,
+          boxShadow: `0 0 0 2px ${s.bg}`,
+        }}
+      />
     </span>
   );
 }
@@ -153,13 +156,25 @@ export default function MaterialsTable({ materials: initialMaterials, lastUpdate
         <Table>
           <TableHeader>
             <TableRow style={{ background: "var(--surface2)", borderBottom: "1px solid var(--pier-border)" }}>
-              {["ID","Cikkszám","Típus","Beszállító","Teljes sz.","Hasznos sz.","Súly","Összetétel","Ár","Fuvarparitás","Sample MOQ","BULK MOQ","Gyártási idő","HTS kód","Státusz","Adatlap",""].map((h, i) => (
+              {[
+                { label: "ID" },
+                { label: "Cikkszám" },
+                { label: "Típus" },
+                { label: "Beszállító" },
+                { label: "Teljes sz.", right: true },
+                { label: "Hasznos sz.", right: true },
+                { label: "Súly", right: true },
+                { label: "Összetétel" },
+                { label: "Státusz" },
+                { label: "Adatlap" },
+                { label: "" },
+              ].map((h, i) => (
                 <TableHead
                   key={i}
-                  className={`text-xs font-semibold uppercase tracking-wide whitespace-nowrap ${i >= 4 && i <= 6 ? "text-right" : ""}`}
+                  className={`text-xs font-semibold uppercase tracking-wide whitespace-nowrap ${h.right ? "text-right" : ""}`}
                   style={{ color: "var(--ink2)", padding: "10px 14px" }}
                 >
-                  {h}
+                  {h.label}
                 </TableHead>
               ))}
             </TableRow>
@@ -191,13 +206,7 @@ export default function MaterialsTable({ materials: initialMaterials, lastUpdate
                   <TableCell className="text-right text-sm" style={{ padding: "10px 14px" }}>{fmt(m.hasznoszelesseg)}</TableCell>
                   <TableCell className="text-right text-sm" style={{ padding: "10px 14px" }}>{fmt(m.suly, "g/m²")}</TableCell>
                   <TableCell className="text-xs" style={{ padding: "10px 14px", color: "var(--ink2)", maxWidth: 200 }}>{m.osszetétel || "—"}</TableCell>
-                  <TableCell className="text-xs" style={{ padding: "10px 14px" }}>{m.ar || "—"}</TableCell>
-                  <TableCell className="text-xs" style={{ padding: "10px 14px" }}>{m.fuvarparitas || "—"}</TableCell>
-                  <TableCell className="text-xs" style={{ padding: "10px 14px" }}>{m.sampleMoq || "—"}</TableCell>
-                  <TableCell className="text-xs" style={{ padding: "10px 14px" }}>{m.bulkMoq || "—"}</TableCell>
-                  <TableCell className="text-xs" style={{ padding: "10px 14px" }}>{m.gyartasiIdo || "—"}</TableCell>
-                  <TableCell className="font-mono text-xs" style={{ padding: "10px 14px", color: "var(--ink3)" }}>{m.htsCode || "—"}</TableCell>
-                  <TableCell style={{ padding: "10px 14px" }}><StatusBadge status={m.statusz} /></TableCell>
+                  <TableCell style={{ padding: "10px 14px" }}><StatusDot status={m.statusz} /></TableCell>
                   <TableCell className="text-center" style={{ padding: "10px 14px" }}>
                     {m.pdfUrl ? (
                       <a
